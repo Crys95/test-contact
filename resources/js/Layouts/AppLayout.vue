@@ -1,7 +1,6 @@
 <template>
     <div
         class="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500">
-        <!-- Header -->
         <header
             class="flex items-center justify-between px-6 py-4 bg-blue-100 dark:bg-gray-800 shadow-md sticky top-0 z-50">
             <h1 class="text-2xl font-bold text-blue-700 dark:text-blue-300 select-none">
@@ -21,12 +20,10 @@
             </button>
         </header>
 
-        <!-- Conteúdo da página -->
         <main class="flex-grow px-6 py-8 max-w-2xl mx-auto w-full">
             <slot />
         </main>
 
-        <!-- Footer -->
         <footer class="bg-blue-100 dark:bg-gray-800 text-blue-900 dark:text-blue-400 text-center p-4 text-sm">
             Consulta CEP © 2025
         </footer>

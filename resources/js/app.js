@@ -2,6 +2,8 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import AppLayout from '@/Layouts/AppLayout.vue';  
+import Toast from 'vue-toastification';
+import 'vue-toastification/dist/index.css';
 import './assets/tailwind.css';
 
 createInertiaApp({
@@ -17,6 +19,12 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)
+      .use(Toast, {
+        position: 'top-right',
+        timeout: 3000,
+        closeOnClick: true,
+        pauseOnHover: true,
+      })
       .mount(el);
   },
 });
