@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
-use App\Models\Contact;
 
 class CreateContactsTest extends TestCase
 {
@@ -20,9 +19,9 @@ class CreateContactsTest extends TestCase
             'phone' => '(41) 98899-4422'
         ];
 
-        $response = $this->postJson('/contacts', $data);
+        $response = $this->post('/contacts', $data);
 
-        $response->assertStatus(201);
+        $response->assertStatus(302);
 
         $expected = $data;
         $expected['phone'] = preg_replace('/\D/', '', $expected['phone']);
@@ -39,10 +38,9 @@ class CreateContactsTest extends TestCase
             'phone' => '419'
         ];
 
-        $response = $this->postJson('/contacts', $data);
+        $response = $this->post('/contacts', $data);
 
-        $response->assertStatus(422);
-        $response->assertJsonValidationErrors([
+        $response->assertSessionHasErrors([
             'name',
             'email',
             'phone'
@@ -54,26 +52,36 @@ class CreateContactsTest extends TestCase
     #[Test]
     public function it_should_be_able_to_list_contacts_paginated_by_10_items_per_page(): void
     {
-        Contact::factory(20)->create();
+        \App\Models\Contact::factory(20)->create();
 
-        $response = $this->getJson('/contacts');
+        $response = $this->get('/contacts');
 
         $response->assertStatus(200);
-        $response->assertJsonStructure([
-            'data'
-        ]);
 
-        $this->assertCount(10, $response->json('data'));
+        $responseContent = $response->getContent();
+
+        preg_match('/<div id="app" data-page="([^"]+)"/', $responseContent, $matches);
+
+        $this->assertNotEmpty($matches, 'Inertia page data not found in response.');
+
+        $pageData = json_decode(html_entity_decode($matches[1]), true);
+
+        $this->assertArrayHasKey('props', $pageData);
+        $this->assertArrayHasKey('contacts', $pageData['props']);
+
+        $contacts = $pageData['props']['contacts']['data'] ?? [];
+
+        $this->assertCount(10, $contacts);
     }
 
     #[Test]
     public function it_should_be_able_to_delete_a_contact(): void
     {
-        $contact = Contact::factory()->create();
+        $contact = \App\Models\Contact::factory()->create();
 
-        $response = $this->deleteJson("/contacts/{$contact->id}");
+        $response = $this->delete("/contacts/{$contact->id}");
 
-        $response->assertStatus(204);
+        $response->assertStatus(302);
 
         $this->assertDatabaseMissing('contacts', $contact->toArray());
     }
@@ -81,7 +89,7 @@ class CreateContactsTest extends TestCase
     #[Test]
     public function the_contact_email_should_be_unique(): void
     {
-        $contact = Contact::factory()->create();
+        $contact = \App\Models\Contact::factory()->create();
 
         $data = [
             'name' => 'Rodolfo Meri',
@@ -89,10 +97,11 @@ class CreateContactsTest extends TestCase
             'phone' => '(41) 98899-4422'
         ];
 
-        $response = $this->postJson('/contacts', $data);
+        $response = $this->post('/contacts', $data);
 
-        $response->assertStatus(422);
-        $response->assertJsonValidationErrors(['email']);
+        $response->assertSessionHasErrors([
+            'email'
+        ]);
 
         $this->assertDatabaseCount('contacts', 1);
     }
@@ -100,7 +109,7 @@ class CreateContactsTest extends TestCase
     #[Test]
     public function it_should_be_able_to_update_a_contact(): void
     {
-        $contact = Contact::factory()->create();
+        $contact = \App\Models\Contact::factory()->create();
 
         $data = [
             'name' => 'Rodolfo Meri',
@@ -108,14 +117,15 @@ class CreateContactsTest extends TestCase
             'phone' => '(41) 98899-4422'
         ];
 
-        $response = $this->putJson("/contacts/{$contact->id}", $data);
+        $response = $this->put("/contacts/{$contact->id}", $data);
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
 
         $expected = $data;
         $expected['phone'] = preg_replace('/\D/', '', $expected['phone']);
 
         $this->assertDatabaseHas('contacts', $expected);
+
         $this->assertDatabaseMissing('contacts', $contact->toArray());
     }
 }

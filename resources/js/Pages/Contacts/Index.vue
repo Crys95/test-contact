@@ -41,7 +41,6 @@
       </tbody>
     </table>
 
-    <!-- Paginação simples -->
     <div class="mt-4 flex justify-center space-x-3 text-gray-700 dark:text-gray-300">
       <button :disabled="!contacts.prev_page_url" @click="goToPage(contacts.current_page - 1)"
         class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded disabled:opacity-50">
@@ -75,7 +74,6 @@ function destroy(id) {
     })
   }
 }
-
 
 function goToPage(page) {
   Inertia.get(`/contacts?page=${page}`)

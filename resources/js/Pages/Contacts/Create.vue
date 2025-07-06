@@ -49,7 +49,6 @@ const form = reactive({
   phone: '',
 })
 
-// Função que formata o telefone no padrão (99) 99999-9999
 function onPhoneInput(event) {
   let input = event.target.value
   input = input.replace(/\D/g, '')
