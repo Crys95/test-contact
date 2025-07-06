@@ -10,7 +10,7 @@ link da porta http://localhost:8000/contacts
 - ✅ **Back-end**: Fazer todos os testes passarem, aplicando os princípios do Laravel, SOLID, Clean Architecture e boas práticas.
 - ✅ **Front-end**: Implementar a interface utilizando **Vue 3**, **Inertia.js** e **TailwindCSS**.
 - 🎨 **Tema**: A interface possui **modo claro e escuro**, que se adapta automaticamente com base nas preferências do sistema do usuário.
-- ➕ **Plus (opcional)**: Enviar um email ao contato quando ele for excluído do sistema.
+- ➕ **Plus**: Enviar um email ao contato quando ele for excluído do sistema.
 - 📌 O envio está utilizando [Mailtrap](https://mailtrap.io), uma ferramenta de teste para e-mails em ambiente de desenvolvimento. A conta deve estar ativa e os dados acima válidos.
 
 ## ⚙️ Tecnologias utilizadas
@@ -29,10 +29,10 @@ link da porta http://localhost:8000/contacts
 ```bash
 
 npm run setup
-##  php artisan serve → Back-end (Laravel) vite → Front-end (Vue + Inertia)
+##  composer install → Back-end (Laravel) npm install → Front-end (Vue + Inertia)
 
 php artisan migrate
-## 🚀 Rodar a migrate
+## 🚀 criar um arquivo .env e pergar tudo que esta no .env.exemple
 
 npm run dev
 ## 🚀 	Roda Laravel + Vite simultaneamente
