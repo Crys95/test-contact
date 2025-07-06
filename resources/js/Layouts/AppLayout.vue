@@ -4,7 +4,7 @@
         <header
             class="flex items-center justify-between px-6 py-4 bg-blue-100 dark:bg-gray-800 shadow-md sticky top-0 z-50">
             <h1 class="text-2xl font-bold text-blue-700 dark:text-blue-300 select-none">
-                Consulta CEP
+                CONTACT
             </h1>
             <button @click="toggleTheme" :aria-label="`Trocar para modo ${theme === 'dark' ? 'claro' : 'escuro'}`"
                 class="p-2 rounded-full bg-blue-200 dark:bg-blue-700 hover:bg-blue-300 dark:hover:bg-blue-600 transition">
@@ -25,7 +25,7 @@
         </main>
 
         <footer class="bg-blue-100 dark:bg-gray-800 text-blue-900 dark:text-blue-400 text-center p-4 text-sm">
-            Consulta CEP © 2025
+            Contact © 2025
         </footer>
     </div>
 </template>

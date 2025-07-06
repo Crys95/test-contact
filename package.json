@@ -2,6 +2,7 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "setup": "composer install && npm install",
         "dev": "concurrently \"php artisan serve\" \"npm run dev:vite\"",
         "dev:vite": "vite"
     },
