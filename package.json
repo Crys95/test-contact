@@ -2,9 +2,10 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "setup": "composer install && npm install",
+        "setup": "composer install && npm install && npm run build",
         "dev": "concurrently \"php artisan serve\" \"npm run dev:vite\"",
-        "dev:vite": "vite"
+        "dev:vite": "vite",
+        "build": "vite build"
     },
     "devDependencies": {
         "@vitejs/plugin-vue": "^6.0.0",
