@@ -1,18 +1,41 @@
-Objective:
+# 📇 Contact Management System
 
-Back-end Assessment: [ ] Make all tests pass, applying the best practices of Laravel and SOLID and clean arch
+Sistema completo de gerenciamento de contatos (CRUD) utilizando **Laravel**, **Vue 3**, **Inertia.js** e **TailwindCSS**.
+link da porta http://localhost:8000/contacts
 
-Front-end Assessment: [ ] Implement a front-end using Inertia.js, Vue3 and TailwindCss for contact CRUD
+---
 
-* Plus: Feel free to implement improvements and more features as you wish, such as sending an email to the contact when that contact is deleted from the system.
+## 🎯 Objetivo
 
-# Installation
-1. Clone the repository
-2. Have PHP 8.3 installed on your machine, composer 2, and activate the extensions requested by composer when running "composer install"
-3. Run "Composer install"
-4. Create a .env file and paste the contents of .env.example
-5. Run the command php artisan key:generate
-6. Run the command php artisan test, solve the tests
+- ✅ **Back-end**: Fazer todos os testes passarem, aplicando os princípios do Laravel, SOLID, Clean Architecture e boas práticas.
+- ✅ **Front-end**: Implementar a interface utilizando **Vue 3**, **Inertia.js** e **TailwindCSS**.
+- 🎨 **Tema**: A interface possui **modo claro e escuro**, que se adapta automaticamente com base nas preferências do sistema do usuário.
+- ➕ **Plus (opcional)**: Enviar um email ao contato quando ele for excluído do sistema.
+- 📌 O envio está utilizando [Mailtrap](https://mailtrap.io), uma ferramenta de teste para e-mails em ambiente de desenvolvimento. A conta deve estar ativa e os dados acima válidos.
 
-7. After the test is complete, create a repository on github, and upload your resolution to the repository
-8. Send the repository link to WhatsApp +55 41 98702-5814
+## ⚙️ Tecnologias utilizadas
+
+- Laravel 10+
+- Vue 3
+- Inertia.js
+- TailwindCSS
+- Vite
+- PHPUnit
+
+---
+
+## 🚀 Instalação
+
+```bash
+
+npm run setup
+##  php artisan serve → Back-end (Laravel) vite → Front-end (Vue + Inertia)
+
+php artisan migrate
+## 🚀 Rodar a migrate
+
+npm run dev
+## 🚀 	Roda Laravel + Vite simultaneamente
+
+php artisan test --testsuite=Feature
+## 🚀 Todos os testes devem passar para validar a aplicação.
