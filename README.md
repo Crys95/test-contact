@@ -11,7 +11,7 @@ link da porta http://localhost:8000/contacts
 - ✅ **Front-end**: Implementar a interface utilizando **Vue 3**, **Inertia.js** e **TailwindCSS**.
 - 🎨 **Tema**: A interface possui **modo claro e escuro**, que se adapta automaticamente com base nas preferências do sistema do usuário.
 - ➕ **Plus**: Enviar um email ao contato quando ele for excluído do sistema.
-- 📌 O envio está utilizando [Mailtrap](https://mailtrap.io), uma ferramenta de teste para e-mails em ambiente de desenvolvimento. A conta deve estar ativa e os dados acima válidos.
+- 📌 O envio está utilizando [Mailtrap](https://mailtrap.io), uma ferramenta de teste para e-mails em ambiente de desenvolvimento. A conta deve estar ativa e os dados do .env válidos.
 
 ## ⚙️ Tecnologias utilizadas
 
